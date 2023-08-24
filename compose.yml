@@ -1,0 +1,36 @@
+version: '3.6'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./:/app/
+    working_dir: /app
+    command: ./bin/dev 
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+      - redis
+    tty: true
+    environment:
+      REDIS_URL: redis://redis@redis
+      DATABASE_URL: postgres://postgres@db
+      RAILS_LOG_TO_STDOUT: 'true'
+
+  redis:
+    image: redis:alpine
+    volumes:
+      - ../redis:/data
+    ports:
+      - 6379:6379
+
+  db:
+    image: postgres:14-alpine
+    volumes:
+      - ../database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+
