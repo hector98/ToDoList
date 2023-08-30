@@ -5,6 +5,8 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
+    @color = @category.color
+    @estilo = "bg-green-500"
   end
 
   def new

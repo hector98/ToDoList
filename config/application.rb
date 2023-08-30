@@ -1,4 +1,5 @@
 require_relative "boot"
+require_relative "colors"
 
 require "rails/all"
 

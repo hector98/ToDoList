@@ -1,4 +1,10 @@
-<div class = "bg-<%= @category.color %>-500 container m-9">
-  <h1 class="bg-<%= @category.color %>-500 text-9xl"><%= @category.name %></h1><br><p>
-  <p class ="text-5xl"><%= @category.color %></p>
+
+<div class = "bg-<%= "#{@category.color}" %>-500 container m-9">
+  <h1 class="text-9xl"><%= @category.name %></h1><br>
+  <p class="text-5xl"><%= @category.color %></p>
+
 </div>
+
+<%= content_tag :div, @color, style: "color: #{@color};" %>
+<%= content_tag :div, @color, style: "background-color: #{@color}" %>
+
