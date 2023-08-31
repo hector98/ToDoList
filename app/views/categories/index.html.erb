@@ -1,0 +1,14 @@
+<div class="flex flex-row">
+  <div class="basis-4/12 w-full">
+    <div class = "container h-full flex flex-col space-y-4 bg-amber-100">
+      <h1 class="text-4xl">Categorias</h1>
+      <ul>
+        <% @categories.each do |c| %>
+          <li class="bg-<%= c.color %>-400">
+            <h1 class="text-5xl"><%= c.name %></h1>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
