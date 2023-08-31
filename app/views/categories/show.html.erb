@@ -9,5 +9,40 @@
 
 <% end %>
     <h1 class="text-9xl"><%= @category.name %></h1><br>
-    <p class="text-5xl"><%= @category.color %></p>
+
+    <div>
+      <h1> Create new Task </h1>
+      <%= link_to "New task", new_category_task_path(@category) %>
+    </div><br>
+
+    <h2>Add new Task</h2>
+    <%= form_with model: [@category, @category.tasks.build ] do |f| %>
+      <p>
+        <%= f.label :title %><br>
+        <%= f.text_field :title %>
+      </p>
+
+      <p>
+        <%= f.label :body %><br>
+        <%= f.text_area :body %>
+      </p>
+
+      <p>
+        <%= f.submit %>
+      </p>
+    <% end %>
+
+    <h2> Tasks </h2>
+    <% @category.tasks.each do |t| %>
+      <p>
+        <strong>Titulo: </strong>
+        <%= t.title %>
+      </p>
+
+      <p>
+        <strong>Cuerpo de la tarea: </strong>
+        <%= t.body %>
+      </p>
+
+    <% end %>
   </div>
