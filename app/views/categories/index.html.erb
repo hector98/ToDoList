@@ -2,24 +2,24 @@
   <h1 class = "text-5xl"> Bienvenido(a) a tu gestor de tareas </h1>
 </div>
 
-<div class="flex flex-row mt-1 w-full h-full space-x-1.5">
-  <div class="basis-3/12 w-full">
-    <div class = "container h-full flex flex-col space-y-4 bg-amber-100">
-      <h1 class="text-5xl">Categorias</h1><br>
-      <p class = "bg-orange-500 text-6xl">
+<div class="flex flex-row mt-1 w-full min-h-max space-x-1.5">
+  <div class="basis-3/12 w-full overscroll-contain p-2">
+    <div class = "container h-full flex flex-col space-y-4 bg-amber-100 p-2">
+      <h1 class="text-5xl text-center align-middle">Categorias</h1><br>
+      <p class = "bg-orange-500 text-4xl text-center rounded-full align-middle">
         <%= link_to "Nueva Categoria", new_category_path, class: "category-link", "data-url": new_category_path %>
       </p>
-      <ul>
+      <ul class="py-1.5 overscroll-auto">
         <% @categories.each do |c| %>
-          <li class="bg-<%= c.color %>-400">
-            <h1 class="text-5xl"><%= link_to c.name, c, class: "category-link", "data-url": category_path(c) %></h1>
+          <li class="bg-<%= c.color %>-400 rounded-r-full my-2">
+            <h1 class="text-3xl rounded-3xl align-middle text-center"><%= link_to c.name, c, class: "category-link", "data-url": category_path(c) %></h1>
           </li>
         <% end %>
       </ul>
     </div>
   </div>
 
-  <div class="basis-9/12 bg-orange-400 p-2">
+  <div class="basis-9/12 bg-orange-400 p-2 rounded-xl overscroll-contain">
     <div id="category-content">
     </div>
   </div>

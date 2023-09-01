@@ -1,4 +1,4 @@
-<%= form_with model: @category do |f| %>
+<%= form_with(model: @category, remote: true ) do |f| %>
   <div>
     <%= f.label :name %><br>
     <%= f.text_field :name %>

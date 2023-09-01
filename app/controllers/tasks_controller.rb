@@ -4,13 +4,10 @@ class TasksController < ApplicationController
     @category = Category.find(params[:category_id])
     @task = @category.tasks.create(task_params)
     
-    if @task.save
-      puts "siiiiiiiiiiiiiiiiii"
-      sleep(10)
-      redirect_to category_path(@category)
-    else
-      puts "noooo"
-    end
+    respond_to @category
+    respond_to do |f|
+      f.html { render partial: 'categories/show', locals: { category: @category.tasks } }
+    end    
   end
 
   private

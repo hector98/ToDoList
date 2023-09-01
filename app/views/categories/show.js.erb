@@ -1,0 +1,10 @@
+const catagoryContent = document.getElementById("category-content");
+console.log("si 1");
+
+const categoryDiv = document.createElement("div");
+categoryDiv.classList.add("category");
+categoryDiv.textContent = "<%= j(render_partial "show") %>";
+console.log("si 2");
+
+catagoryContent.appendChild(categoryDiv);
+console.log("si 3");

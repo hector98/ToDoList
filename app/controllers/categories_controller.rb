@@ -7,6 +7,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     respond_to do |f|
       f.html { render partial: 'show', locals: { category: @category } }
+      f.js
     end
   end
 
@@ -16,15 +17,15 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
-    @category.save
 
-    if @category.save
-      respond_to index
-      #  f.html { render partial: @category.tasks, locals: { category: @category } }
-      #end
-        
-    else
-      render :new, status: :unprocessable_entity
+    respond_to do |f|
+      if @category.save
+        f.js
+        #f.html { render :index, notice: 'Categoria creada con exito.' }
+      else
+        f.html { render :new }
+        f.json { render json: @category.errors, status: :unprocessable_entity }
+      end
     end
   end
 
