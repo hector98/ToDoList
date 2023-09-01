@@ -5,8 +5,9 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @color = @category.color
-    @estilo = "bg-green-500"
+    respond_to do |f|
+      f.html { render partial: 'show', locals: { category: @category } }
+    end
   end
 
   def new
@@ -18,7 +19,10 @@ class CategoriesController < ApplicationController
     @category.save
 
     if @category.save
-      redirect_to @category
+      respond_to index
+      #  f.html { render partial: @category.tasks, locals: { category: @category } }
+      #end
+        
     else
       render :new, status: :unprocessable_entity
     end

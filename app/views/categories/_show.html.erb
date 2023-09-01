@@ -1,0 +1,27 @@
+<% if @category.color == "red" %>
+  <div class="bg-red-300 container h-auto">
+
+<% elsif @category.color == "blue" %>
+  <div class="bg-blue-400 container h-auto">
+
+<% elsif @category.color == "green" %>
+  <div class="bg-green-400 container h-full">
+
+<% else %>
+  <div class="bg-<%= @category.color %>-500 container h-auto">
+
+<% end %>
+    <h1 class="text-5xl"><%= @category.name %></h1><br>
+
+    <h2>Add new Task</h2>
+    <div>
+      <%= render 'tasks/form' %>
+    </div>
+
+
+    <h2> Tasks </h2>
+    <div>
+      <%= render @category.tasks %>
+    </div>
+  </div>
+

@@ -1,14 +1,49 @@
-<div class="flex flex-row">
-  <div class="basis-4/12 w-full">
+<div class="flex justify-between bg-green-100 mb-2 space-x-4 w-full h-auto">
+  <h1 class = "text-5xl"> Bienvenido(a) a tu gestor de tareas </h1>
+</div>
+
+<div class="flex flex-row mt-1 w-full h-full space-x-1.5">
+  <div class="basis-3/12 w-full">
     <div class = "container h-full flex flex-col space-y-4 bg-amber-100">
-      <h1 class="text-4xl">Categorias</h1>
+      <h1 class="text-5xl">Categorias</h1><br>
+      <p class = "bg-orange-500 text-6xl">
+        <%= link_to "Nueva Categoria", new_category_path, class: "category-link", "data-url": new_category_path %>
+      </p>
       <ul>
         <% @categories.each do |c| %>
           <li class="bg-<%= c.color %>-400">
-            <h1 class="text-5xl"><%= c.name %></h1>
+            <h1 class="text-5xl"><%= link_to c.name, c, class: "category-link", "data-url": category_path(c) %></h1>
           </li>
         <% end %>
       </ul>
     </div>
   </div>
+
+  <div class="basis-9/12 bg-orange-400 p-2">
+    <div id="category-content">
+    </div>
+  </div>
 </div>
+
+<script>
+  // Agregar un evento click a los enlaces de categorías
+  document.addEventListener("DOMContentLoaded", () => {
+    const categoryLinks = document.querySelectorAll(".category-link");
+    const categoryContent = document.getElementById("category-content");
+
+    categoryLinks.forEach(link => {
+      link.addEventListener("click", event => {
+        event.preventDefault();
+        const url = event.currentTarget.getAttribute("href");
+
+        // Realizar una solicitud AJAX a la acción del controlador
+        fetch(url)
+          .then(response => response.text())
+          .then(data => {
+            // Actualizar el contenido de la columna de tareas
+            categoryContent.innerHTML = data;
+          });
+      });
+    });
+  }); 
+</script>
