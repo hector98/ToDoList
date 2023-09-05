@@ -1,21 +1,26 @@
-<%= form_with(model: @category, remote: true ) do |f| %>
-  <div>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+<div class="bg-gray-950/60 w-1/2 h-80">
+  <h1 class="text-2xl">Crear Categoria</h1>
+  <%= form_with(model: @category, remote: true ) do |f| %>
+    <div>
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
 
-    <% @category.errors.full_messages_for(:name).each do |msg| %>
-      <div><%= msg %></div>
-    <% end %>
-  </div>
+      <% @category.errors.full_messages_for(:name).each do |msg| %>
+        <div><%= msg %></div>
+      <% end %>
+    </div>
 
-  <div>
-    <%= f.label :color %><br>
-    <%= f.select :color, Category.colors.keys %><br>
+    <div>
+      <%= f.label :color %><br>
+      <%= f.select :color, Category.colors.keys %><br>
 
-    <% @category.errors.full_messages_for(:name).each do |msg| %>
-      <div><%= msg %></div>
-    <% end %>
-  </div>
+      <% @category.errors.full_messages_for(:name).each do |msg| %>
+        <div><%= msg %></div>
+      <% end %>
+    </div>
 
-    <%= f.submit %>
-<% end %>
+    <button class="bg-indigo-300 rounded-lg shadow-lg shadow-indigo-500/40">
+      <%= f.submit %>
+    </button>
+  <% end %>
+</div>

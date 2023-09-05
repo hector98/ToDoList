@@ -25,25 +25,3 @@
   </div>
 </div>
 
-<script>
-  // Agregar un evento click a los enlaces de categorías
-  document.addEventListener("DOMContentLoaded", () => {
-    const categoryLinks = document.querySelectorAll(".category-link");
-    const categoryContent = document.getElementById("category-content");
-
-    categoryLinks.forEach(link => {
-      link.addEventListener("click", event => {
-        event.preventDefault();
-        const url = event.currentTarget.getAttribute("href");
-
-        // Realizar una solicitud AJAX a la acción del controlador
-        fetch(url)
-          .then(response => response.text())
-          .then(data => {
-            // Actualizar el contenido de la columna de tareas
-            categoryContent.innerHTML = data;
-          });
-      });
-    });
-  }); 
-</script>
